@@ -6,7 +6,7 @@ declare(strict_types=1);
  * Email: sgenmi@gmail.com
  */
 
-namespace Weida\OceanengineCore\Contract;
+namespace Weida\PindoudouCore\Contract;
 
 use Psr\Http\Message\ResponseInterface;
 

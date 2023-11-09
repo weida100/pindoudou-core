@@ -1,0 +1,22 @@
+{
+    "name": "weida/pindoudou-core",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Weida\\PindoudouCore\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Sgenmi",
+            "email": "sgenmi@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=8.0",
+        "weida/oauth2-core": "^0.0.2",
+        "guzzlehttp/guzzle": "^7.0",
+        "psr/simple-cache": "^3.0"
+    }
+}
