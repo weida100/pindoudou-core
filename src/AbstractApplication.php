@@ -12,12 +12,8 @@ use Psr\SimpleCache\CacheInterface;
 use Weida\Oauth2Core\Config;
 use Weida\Oauth2Core\Contract\ConfigInterface;
 use Weida\Oauth2Core\Contract\HttpClientInterface;
-use Weida\OceanengineCore\AccessToken;
-use Weida\OceanengineCore\Cache\RedisAdapter;
-use Weida\OceanengineCore\Contract\AccessTokenInterface;
-use Weida\OceanengineCore\FileSystemAdapter;
-use Weida\OceanengineCore\HttpClient;
-use Weida\OceanengineCore\Oauth2;
+use Weida\PindoudouCore\Cache\RedisAdapter;
+use Weida\PindoudouCore\Contract\AccessTokenInterface;
 
 abstract class AbstractApplication
 {
@@ -27,7 +23,7 @@ abstract class AbstractApplication
     private CacheInterface $cache;
     private HttpClientInterface $httpClient;
     private int $uid=0;
-    protected string $cacheNamespace="weida:oceanengine";
+    protected string $cacheNamespace="weida:pdd";
 
     public function __construct(array $config)
     {
@@ -102,7 +98,7 @@ abstract class AbstractApplication
     public function getHttpClient():HttpClientInterface
     {
         if(empty($this->httpClient)){
-            $this->httpClient =   new HttpClient(['base_uri'=>'https://ad.oceanengine.com/']);
+            $this->httpClient =   new HttpClient(['base_uri'=>'https://gw-api.pinduoduo.com/api/router']);
         }
         return $this->httpClient;
     }

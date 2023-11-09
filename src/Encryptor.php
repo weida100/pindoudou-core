@@ -16,7 +16,7 @@ class Encryptor
      * @return string
      * @author Weida
      */
-    public static function Sign(array $params,string $secret):string{
+    public static function sign(array $params,string $secret):string{
         unset($params["sign"]);
         ksort($params);
         $sign = $secret;

@@ -24,6 +24,7 @@ class AccessToken implements AccessTokenInterface
     private ?CacheInterface $cache;
     private ?HttpClientInterface $httpClient;
     private $callback;
+    private string $cacheKey='';
     public function __construct(
         int $clientId,string $clientSecret,int $uid, string $refreshToken,
         ?CacheInterface $cache=null, ?HttpClientInterface $httpClient=null,?callable $callback=null
