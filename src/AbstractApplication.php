@@ -22,7 +22,7 @@ abstract class AbstractApplication
     private AccessTokenInterface $accessToken;
     private CacheInterface $cache;
     private HttpClientInterface $httpClient;
-    private int $uid=0;
+    private string | int $uid=0;
     protected string $cacheNamespace="weida:pdd";
 
     public function __construct(array $config)
@@ -127,12 +127,12 @@ abstract class AbstractApplication
     }
 
     /**
-     * @param int $uid
+     * @param string|int $uid
      * @param string $refreshToken
      * @return AccessTokenInterface
      * @author Weida
      */
-    public function getAccessToken(int $uid,string $refreshToken=''):AccessTokenInterface {
+    public function getAccessToken(string | int $uid,string $refreshToken=''):AccessTokenInterface {
         if(empty($this->accessToken) || $this->uid != $uid){
             $this->accessToken = new AccessToken(
               $this->getConfig()->get('client_id'),
@@ -155,7 +155,5 @@ abstract class AbstractApplication
         $this->accessToken = $accessToken;
         return $this;
     }
-
-
 
 }

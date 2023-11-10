@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace Weida\PindoudouCore;
 
 use Psr\SimpleCache\CacheInterface;
+use Psr\SimpleCache\InvalidArgumentException;
 use RuntimeException;
 use Throwable;
 use Weida\Oauth2Core\Contract\HttpClientInterface;
@@ -16,9 +17,9 @@ use Weida\PindoudouCore\Contract\AccessTokenInterface;
 
 class AccessToken implements AccessTokenInterface
 {
-    private int $clientId;
+    private string|int $clientId;
     private string $clientSecret;
-    private int $uid;
+    private string| int $uid;
     private string $refreshToken;
     private string $accessToken='';
     private ?CacheInterface $cache;
@@ -26,7 +27,7 @@ class AccessToken implements AccessTokenInterface
     private $callback;
     private string $cacheKey='';
     public function __construct(
-        int $clientId,string $clientSecret,int $uid, string $refreshToken,
+        string|int $clientId,string $clientSecret,string|int $uid, string $refreshToken,
         ?CacheInterface $cache=null, ?HttpClientInterface $httpClient=null,?callable $callback=null
     )
     {
@@ -159,14 +160,14 @@ class AccessToken implements AccessTokenInterface
     }
 
     /**
-     * @param int $uid
+     * @param string|int $uid
      * @param string $accessToken
      * @param int $expiresIn
      * @return bool
-     * @throws Throwable
+     * @throws InvalidArgumentException
      * @author Weida
      */
-    public function saveCache(int $uid,string $accessToken,int $expiresIn):bool {
+    public function saveCache(string|int $uid,string $accessToken,int $expiresIn):bool {
         $this->uid = $uid;
         $this->cache->set($this->getCacheKey(), $accessToken, $expiresIn-10);
         return true;

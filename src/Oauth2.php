@@ -138,7 +138,7 @@ class Oauth2 extends AbstractApplication
             }catch (Throwable $e){
             }
         }
-        $this->accessToken->saveCache(intval($res['owner_id']),$res['access_token'],intval($res['expires_in']));
+        $this->accessToken->saveCache($res['owner_id'],$res['access_token'],intval($res['expires_in']));
         return $arr;
     }
 }
